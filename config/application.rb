@@ -4,6 +4,7 @@ require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "rails/test_unit/railtie"
+require "apartment/elevators/subdomain"
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -42,5 +43,7 @@ module Twist
     config.assets.enabled = true
 
     config.cache_store = :redis_store
+
+    config.middleware.use Apartment::Elevators::Subdomain
   end
 end

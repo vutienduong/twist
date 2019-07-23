@@ -10,6 +10,7 @@ Sidekiq::Testing.inline!
 
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
+Capybara.app_host = 'http://lvh.me'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -38,6 +39,20 @@ RSpec.configure do |config|
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do
       example.run
+      Apartment::Tenant.reset
+    end
+
+    connection = ActiveRecord::Base.connection.raw_connection
+    schemas = connection.query(%Q{
+      SELECT 'drop schema "' || nspname || '" cascade;'
+      from pg_namespace
+      where nspname != 'public'
+      AND nspname NOT LIKE 'pg_%'
+      AND nspname != 'information_schema';
+    })
+
+    schemas.each do |query|
+      connection.query(query.values.first)
     end
   end
 

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.3.3'
+ruby '2.4.6'
 
 gem 'rails', '~> 5.0'
 gem 'pg'
@@ -11,6 +11,9 @@ gem 'redcarpet'
 gem 'nokogiri'
 gem 'paperclip'
 gem 'pygments.rb'
+gem 'haml'
+gem 'byebug'
+gem 'apartment'
 
 gem 'redis-activesupport', '5.0.1'
 

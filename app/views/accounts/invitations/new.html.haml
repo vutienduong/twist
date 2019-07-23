@@ -1,0 +1,7 @@
+.row
+  .col-md-offset-4.col-md-4.content
+    %h2
+      New Invitation
+    = simple_form_for @invitation do |f|
+      = f.input :email
+      = f.submit "Invite User", class: "btn btn-primary"

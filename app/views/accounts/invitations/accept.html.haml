@@ -1,0 +1,9 @@
+.row
+  .content.col-md-offset-4.col-md-4
+    %h2 Accepting an invitation
+    %p= "You are accepting an invitation to join the #{current_account.name}"
+
+    - if !user_signed_in?
+      = render 'anonymous_accept'
+    - else
+      = render 'user_accept'

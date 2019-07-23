@@ -1,0 +1,9 @@
+.content.col-md-8
+  - if user_signed_in?
+    %h2 Pick an account
+    %ul.accounts
+      - current_user.all_accounts.each do |account|
+        %li
+          = link_to "#{account.name} (#{account.subdomain})", root_url(subdomain: account.subdomain)
+  - else
+    = link_to "Create a new account", new_account_path

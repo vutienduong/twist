@@ -1,5 +1,4 @@
 class Book < ActiveRecord::Base
-
   has_many :chapters
   has_many :notes, through: :chapters
   before_create :set_permalink

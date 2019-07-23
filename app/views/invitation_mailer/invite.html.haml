@@ -1,0 +1,5 @@
+%p
+  = "You have been invited to join the #{@account.name} account on Twist."
+%p
+  - accept_url = accept_invitation_url(@invitation, subdomain: @account.subdomain)
+  = link_to "Accept Invitation", accept_url

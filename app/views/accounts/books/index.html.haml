@@ -1,0 +1,15 @@
+.row
+  .col-md-7.content
+    %h1
+      Welcome to Twist
+    - @books.each do |book|
+      %h2
+        = link_to book.title, book
+      %span.blurb
+        = book.blurb
+
+  #sidebar.col-md-3
+    - if owner?
+      %ul
+        %li= link_to "Add Book", new_book_path
+        %li= link_to "Users", users_path
